@@ -12,7 +12,7 @@
 		<div class="container">
 			<nav>
 				<div class="nav-wrapper orange">
-					<a href="https://api.whatsapp.com/send?phone=5531975081128&text=Olá!%20Sou%20Wanderson!%20Posso%20ajudar%20seu%20negócio%20a%20se%20destacar%20durante%20a%20pandemia!" class="brand-logo"><img src="http://rocketclass.com.br/wp-content/uploads/2019/12/rocket-logo_branca_1.png" width="80%"></a>
+					<a href="https://api.whatsapp.com/send?phone=5531975081128&text=Olá!%20Sou%20Wanderson!%20Posso%20ajudar%20seu%20negócio%20a%20se%20destacar%20durante%20a%20pandemia!" class="brand-logo"><img src="http://rocketclass.com.br/wpos/assets/img/logo.png" width="80%"></a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li><a href="http://rocketclass.com.br/">Loja virtual para sua empresa</a></li>
 						<li><a href="https://api.whatsapp.com/send?phone=5531975081128&text=Olá!%20Sou%20Wanderson!%20Posso%20ajudar%20seu%20negócio%20a%20se%20destacar%20durante%20a%20pandemia!">Whatsapp</a></li>
@@ -22,14 +22,15 @@
 			</nav>
 			<div class="card-panel teal lighten-2">
 				<H1><span class="orange-text text-darken-4">Quanto emagreci???</H1>
-					<input type="number" placeholder="Digite seu peso inicial" id="pesoinicial" name="pesoinicial" step = "0.1" min = "1" required  />
-					<input type="number" placeholder="Digite seu peso atual" id="pesoatual" name="pesoatual" min = "1" required />
+					<input type="number" placeholder="Digite seu peso inicial, exemplo 112.5" id="pesoinicial" name="pesoinicial" step = "0.1" min = "1" required  /> kg
+					<input type="number" placeholder="Digite seu peso atual, exemplo 98.3" id="pesoatual" name="pesoatual" min = "1" required /> kg
+					<input type="number" placeholder="Digite sua altura, exemplo 1.60" id="pesoatual" name="pesoatual" min = "1" required /> m
 					<button class="waves-effect waves-light btn" type="button" onClick="Calcular()" >Calcular</button>
 			</div>
 			<div class="card-panel orange">
 				<p id="quilos"></p>
-				<p id="situacao"></p>
 				<p id="porcetagem"></p>
+				<p id="imc"></p>
 			</div>
 		</div>
 		<!--JavaScript at end of body for optimized loading-->
@@ -38,9 +39,10 @@
 		<script>
 				function Calcular()
 				{
-					pesoinicial = parseFloat(document.getElementById('pesoinicial').value);
-					pesoatual = parseFloat(document.getElementById('pesoatual').value);   
-					console.log(pesoatual);
+					var pesoinicial = parseFloat(document.getElementById('pesoinicial').value);
+					var pesoatual = parseFloat(document.getElementById('pesoatual').value);   
+					var altura = parseFloat(document.getElementById('altura').value);   
+					
 					if (pesoinicial < pesoatual)
 					{
 						resp = pesoatual - pesoinicial;
@@ -62,6 +64,12 @@
 					
 					document.getElementById("quilos").innerHTML = "" + Math.round(resp) + " quilos " + situacao;
 					document.getElementById("porcetagem").innerHTML = "Porcentagem: " + Math.round(porc)  + "%";    
+					
+					if (altura != 0 && altura != null)
+					{
+						var imc = pesoatual / (altura * altura);
+						document.getElementById("imc").innerHTML = "Seu ìndice de massa corporal (IMC) é " + Math.round(imc);    
+					}
 				}
 		</script>
     </body>
